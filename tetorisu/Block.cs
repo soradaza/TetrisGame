@@ -14,7 +14,7 @@ public class Block : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //_myMaterial = GameObject.Instantiate<Material>(_material);  
+        _myMaterial = GameObject.Instantiate<Material>(_material);  
     }
 
     // Update is called once per frame
@@ -25,9 +25,10 @@ public class Block : MonoBehaviour
 
     public void SetColor(Color color)
     {
+        //_material.color = color;
         if(_myMaterial == null)
         {
-            _myMaterial = GameObject.Instantiate<Material>(_material);
+             _myMaterial = GameObject.Instantiate<Material>(_material);
             _cubeA.material = _myMaterial;
             _cubeB.material = _myMaterial;
         }
@@ -44,7 +45,7 @@ public class Block : MonoBehaviour
         switch (state)
         {
             case system.eBlockState.eFrame:
-                SetColor(FRAME_COLOR);
+                SetColor(DEFAULT_COLOR);
             break;
             case system.eBlockState.eSkyBlue:
             break;
