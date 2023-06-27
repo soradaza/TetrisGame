@@ -131,6 +131,11 @@ public class system : MonoBehaviour
     private int _moveBlockY =DEFAULT_MOVE_Y;
 
     private eBlockState[,] _tempBlocksState = new eBlockState[MOVE_SIZE_Y, MOVE_SIZE_X];
+    // static readonly Color DEFAULT_COLOR = new Color(1.0f, 1.0f, 1.0f);
+    // static readonly Color FRAME_COLOR = new Color(0.1f, 0.1f, 0.1f);
+    //static readonly ColowBlock = newObject.GetComponent<Block>();
+    //             newBlock.SetColor((0<j && j< FIELD_SIZE_X - 1) ? DEFAULT_COLOR : FRAME_COLOR);
+                //newBlor FRAME_COLOR = new Color(0.1f, 0.1f, 0.1f);
     private float _FallTime = 1.0f;
     private float _FallTimer = 1.0f;
 
@@ -175,12 +180,17 @@ public class system : MonoBehaviour
                 // ブロックの実体
                 GameObject newObject = GameObject.Instantiate<GameObject>(_blockPrefab);
                 Block newBlock = newObject.GetComponent<Block>();
+                //newBlock.SetColor((0 < i && i < FIELD_SIZE_Y - 1 && 0 < j && j < FIELD_SIZE_X - 1) ? eBlockState.eNone : eBlockState.eFrame);
+                //newBlock.SetColor((0 < i && i < FIELD_SIZE_Y - 1 && 0 < j && j < FIELD_SIZE_X - 1) ? DEFAULT_COLOR : FRAME_COLOR);
                 newObject.transform.localPosition = new Vector3(j, i, 0.0f);
                 _fieldBlocksObject[i, j] = newObject;
                 _fieldBlocks[i, j] = newBlock;
+                //newBlock.SetState(0 < i && i < FIELD_SIZE_Y - 1 && 0 < j && j < FIELD_SIZE_X - 1) ? eBlockState.eNone : eBlockState.eFrame;
+                // _fieldBlocks[i, j] = newObject;
                 
                 //ブロックの状態
                 _fieldBlocksState[i, j] = (0 < i && i < FIELD_SIZE_Y - 1 && 0 < j && j < FIELD_SIZE_X - 1) ? eBlockState.eNone: eBlockState.eFrame;
+                //newBlock.SetState(_fieldBlocksState[i, j]);
                 _fieldBlocksStateFinal[i, j] =_fieldBlocksState[i, j];
             }
             
@@ -203,6 +213,7 @@ public class system : MonoBehaviour
         }
 
         //左ボタンを押下したとき
+        //if(_FallTimer <= 0.0f || Input.GetKey(KeyCode.LeftArrow))
         if(GetKeyEx(KeyCode.LeftArrow))
         {
             bool isCollision = CheckCollision(-1,0);
@@ -550,9 +561,9 @@ public class system : MonoBehaviour
 
         yield return null;
 
-        for (int i = 0; i < FIELD_SIZE_Y; i++)
+        for(int i = 0; i < MOVE_SIZE_Y; i++)
         {
-            for (int j = 0; j < FIELD_SIZE_X; j++)
+            for(int j = 0; j < MOVE_SIZE_X; j++)
             {
                 if(_fieldBlocksStateFinal[i, j] != eBlockState.eNone)
                 {

@@ -6,7 +6,13 @@ public class Block : MonoBehaviour
 {
     static readonly Color DEFAULT_COLOR = new Color(1.0f, 1.0f, 1.0f);
     static readonly Color FRAME_COLOR = new Color(0.1f, 0.1f, 0.1f);
+    static readonly Color SKY_BLUE_COLOR = new Color(0.5f, 0.5f, 1.0f);
+    static readonly Color YELLOW_COLOR = new Color(1.0f, 1.0f, 0.0f);
+    static readonly Color PURPLE_COLOR = new Color(1.0f, 0.0f, 1.0f);
+    static readonly Color ORANGE_COLOR = new Color(1.0f, 0.5f, 0.0f);
+
     [SerializeField] Material _material = null;
+
     Material _myMaterial = null;
 
     [SerializeField] MeshRenderer _cubeA = null;
@@ -14,7 +20,7 @@ public class Block : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _myMaterial = GameObject.Instantiate<Material>(_material);  
+         
     }
 
     // Update is called once per frame
@@ -25,7 +31,6 @@ public class Block : MonoBehaviour
 
     public void SetColor(Color color)
     {
-        //_material.color = color;
         if(_myMaterial == null)
         {
              _myMaterial = GameObject.Instantiate<Material>(_material);
@@ -45,22 +50,29 @@ public class Block : MonoBehaviour
         switch (state)
         {
             case system.eBlockState.eFrame:
-                SetColor(DEFAULT_COLOR);
-            break;
+                SetColor(Color.gray);
+                break;
             case system.eBlockState.eSkyBlue:
-            break;
+                SetColor(SKY_BLUE_COLOR);
+                break;
             case system.eBlockState.eYellow:
-            break;
+                SetColor(Color.yellow);
+                break;
             case system.eBlockState.ePurple:
-            break;
+                SetColor(PURPLE_COLOR);
+                break;
             case system.eBlockState.eBlue:
-            break;
+                SetColor(Color.blue);
+                break;
             case system.eBlockState.eOrange:
-            break;
+                SetColor(ORANGE_COLOR);
+                break;
             case system.eBlockState.eGreen:
-            break;
+                SetColor(Color.green);
+                break;
             case system.eBlockState.eRed:
-            break;          
+                SetColor(Color.red);
+                break;          
         }
     }
 }
